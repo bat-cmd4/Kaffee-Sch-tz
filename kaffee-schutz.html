@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kaffee Schütz · Strasbourg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --gold: #f5a623;
+        --dark-brown: #2c1a0e;
+        --medium-brown: #5c3317;
+        --cream: #fdf6ec;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--dark-brown);
+        color: var(--cream);
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        padding: 1.2rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(
+          to bottom,
+          rgba(44, 26, 14, 0.92),
+          transparent
+        );
+      }
+      .nav-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--cream);
+      }
+      .nav-logo span {
+        color: var(--gold);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        font-size: 13px;
+        color: rgba(253, 246, 236, 0.65);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      @media (max-width: 500px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 2rem;
+        text-align: center;
+      }
+      .hero-bg-text {
+        position: absolute;
+        font-size: clamp(80px, 18vw, 220px);
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        color: rgba(245, 166, 35, 0.05);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        user-select: none;
+        pointer-events: none;
+      }
+      .hero-badge {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--dark-brown);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 20px;
+        margin-bottom: 1.8rem;
+        position: relative;
+        z-index: 2;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(42px, 9vw, 96px);
+        font-weight: 700;
+        line-height: 1;
+        color: var(--cream);
+        margin-bottom: 0.4rem;
+        position: relative;
+        z-index: 2;
+      }
+      .hero h1 span {
+        color: var(--gold);
+      }
+      .hero-sub {
+        font-size: clamp(14px, 2vw, 18px);
+        color: rgba(253, 246, 236, 0.6);
+        max-width: 520px;
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* BIKE */
+      .bike-wrapper {
+        width: min(560px, 86vw);
+        position: relative;
+        margin-bottom: 2rem;
+        z-index: 3;
+      }
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-7px);
+        }
+      }
+      @keyframes glow-pulse {
+        0%,
+        100% {
+          filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.6));
+        }
+        50% {
+          filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.6))
+            drop-shadow(0 0 20px rgba(245, 166, 35, 0.15));
+        }
+      }
+      .bike-svg-wrap {
+        animation:
+          bob 3.5s ease-in-out infinite,
+          glow-pulse 5s ease-in-out infinite;
+      }
+      .bike-svg-wrap svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .bike-shadow {
+        width: 65%;
+        height: 16px;
+        background: radial-gradient(
+          ellipse,
+          rgba(0, 0, 0, 0.5) 0%,
+          transparent 70%
+        );
+        margin: -4px auto 0;
+        border-radius: 50%;
+      }
+
+      /* CTA */
+      .cta-btn {
+        background: var(--gold);
+        color: var(--dark-brown);
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 14px 38px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        z-index: 2;
+      }
+      .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(245, 166, 35, 0.38);
+      }
+
+      /* SCROLL HINT */
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(7px);
+        }
+      }
+      .scroll-hint {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.4;
+        animation: bounce 2s ease-in-out infinite;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .scroll-hint span {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+
+      /* CITY */
+      .city-svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0.06;
+        pointer-events: none;
+      }
+
+      /* DIVIDER */
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(245, 166, 35, 0.3),
+          transparent
+        );
+      }
+
+      /* STORY */
+      .section {
+        padding: 5rem 2rem;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(26px, 5vw, 48px);
+        line-height: 1.2;
+        color: var(--cream);
+        margin-bottom: 1.5rem;
+      }
+      .section p {
+        font-size: 16px;
+        color: rgba(253, 246, 236, 0.72);
+        line-height: 1.85;
+        max-width: 640px;
+        font-weight: 300;
+      }
+      .section p + p {
+        margin-top: 1rem;
+      }
+
+      /* ORIGIN BAND */
+      .origin-band {
+        background: var(--gold);
+        padding: 1.8rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      .origin-band p {
+        font-size: 15px;
+        color: var(--dark-brown);
+        font-weight: 500;
+      }
+      .origin-flag {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--medium-brown);
+        font-weight: 500;
+      }
+
+      /* PILLARS */
+      .pillars {
+        background: rgba(245, 166, 35, 0.05);
+        padding: 5rem 2rem;
+      }
+      .pillars-inner {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+      .pillar-card {
+        border: 0.5px solid rgba(245, 166, 35, 0.22);
+        border-radius: 12px;
+        padding: 1.5rem;
+        background: rgba(245, 166, 35, 0.04);
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+      .pillar-card:hover {
+        border-color: rgba(245, 166, 35, 0.6);
+        transform: translateY(-4px);
+      }
+      .pillar-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(245, 166, 35, 0.14);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      .pillar-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--cream);
+        margin-bottom: 0.5rem;
+      }
+      .pillar-desc {
+        font-size: 13px;
+        color: rgba(253, 246, 236, 0.55);
+        line-height: 1.65;
+        font-weight: 300;
+      }
+
+      /* ═══════════════════════════════
+   MENU CARROUSEL HORIZONTAL
+═══════════════════════════════ */
+      .menu-section {
+        padding: 5rem 0;
+        overflow: hidden;
+      }
+      .menu-header {
+        padding: 0 2rem;
+        max-width: 860px;
+        margin: 0 auto 2.5rem;
+      }
+      .menu-track-wrap {
+        position: relative;
+      }
+
+      /* Fade edges */
+      .menu-track-wrap::before,
+      .menu-track-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 80px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .menu-track-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, var(--dark-brown), transparent);
+      }
+      .menu-track-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, var(--dark-brown), transparent);
+      }
+
+      .menu-track {
+        display: flex;
+        gap: 1.2rem;
+        overflow-x: auto;
+        padding: 1rem 80px 2rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .menu-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .drink-card {
+        flex: 0 0 200px;
+        scroll-snap-align: start;
+        border: 0.5px solid rgba(245, 166, 35, 0.25);
+        border-radius: 16px;
+        padding: 1.5rem 1.2rem 1.2rem;
+        background: rgba(255, 255, 255, 0.04);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        transition:
+          border-color 0.3s,
+          transform 0.3s,
+          background 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .drink-card:hover {
+        border-color: rgba(245, 166, 35, 0.7);
+        transform: translateY(-5px);
+        background: rgba(245, 166, 35, 0.07);
+      }
+
+      /* Photo placeholder */
+      .drink-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(245, 166, 35, 0.1);
+        border: 1px dashed rgba(245, 166, 35, 0.35);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: background 0.3s;
+      }
+      .drink-card:hover .drink-photo {
+        background: rgba(245, 166, 35, 0.16);
+      }
+      .drink-photo svg {
+        opacity: 0.5;
+      }
+      .drink-photo span {
+        font-size: 9px;
+        color: rgba(245, 166, 35, 0.6);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .drink-name {
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--cream);
+        text-align: center;
+      }
+      .drink-desc {
+        font-size: 11px;
+        color: rgba(253, 246, 236, 0.45);
+        text-align: center;
+        line-height: 1.5;
+        font-weight: 300;
+      }
+      .drink-price {
+        font-size: 22px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      /* Scroll arrows */
+      .scroll-arrows {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0 2rem;
+        margin-top: 0.5rem;
+      }
+      .arrow-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 0.5px solid rgba(245, 166, 35, 0.35);
+        background: transparent;
+        color: var(--gold);
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .arrow-btn:hover {
+        background: rgba(245, 166, 35, 0.12);
+        border-color: rgba(245, 166, 35, 0.7);
+      }
+
+      /* CONTACT */
+      .contact-section {
+        background: rgba(245, 166, 35, 0.06);
+        padding: 5rem 2rem;
+        text-align: center;
+      }
+      .contact-inner {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .contact-inner h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(24px, 4vw, 40px);
+        color: var(--cream);
+        margin-bottom: 1rem;
+      }
+      .contact-inner p {
+        font-size: 15px;
+        color: rgba(253, 246, 236, 0.6);
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        font-weight: 300;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .contact-form input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 0.5px solid rgba(245, 166, 35, 0.3);
+        border-radius: 8px;
+        padding: 13px 16px;
+        color: var(--cream);
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .contact-form input:focus {
+        border-color: rgba(245, 166, 35, 0.8);
+      }
+      .contact-form input::placeholder {
+        color: rgba(253, 246, 236, 0.35);
+      }
+      .contact-form button {
+        background: var(--gold);
+        color: var(--dark-brown);
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 14px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      .contact-form button:hover {
+        opacity: 0.88;
+      }
+
+      /* SUCCESS */
+      .success-msg {
+        display: none;
+        background: rgba(245, 166, 35, 0.12);
+        border: 0.5px solid rgba(245, 166, 35, 0.4);
+        border-radius: 12px;
+        padding: 1.2rem;
+        color: var(--gold);
+        font-size: 14px;
+      }
+
+      /* FOOTER */
+      .footer {
+        padding: 3rem 2rem;
+        text-align: center;
+        border-top: 0.5px solid rgba(245, 166, 35, 0.15);
+      }
+      .footer-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--cream);
+      }
+      .footer-logo span {
+        color: var(--gold);
+      }
+      .footer-tagline {
+        font-size: 12px;
+        color: rgba(245, 166, 35, 0.6);
+        letter-spacing: 0.1em;
+        font-style: italic;
+        margin-top: 0.3rem;
+      }
+      .footer-copy {
+        font-size: 11px;
+        color: rgba(253, 246, 236, 0.3);
+        letter-spacing: 0.07em;
+        margin-top: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo">Kaffee <span>Schütz</span></div>
+      <div class="nav-links">
+        <a href="#story">Histoire</a>
+        <a href="#menu">Carte</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg-text">KAFFEE</div>
+      <svg
+        class="city-svg"
+        viewBox="0 0 1200 200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polygon points="580,0 575,180 585,180" fill="#F5A623" />
+        <rect x="570" y="50" width="20" height="130" fill="#F5A623" />
+        <rect x="560" y="90" width="40" height="90" fill="#F5A623" />
+        <rect x="548" y="120" width="104" height="80" fill="#F5A623" />
+        <rect x="0" y="120" width="80" height="80" fill="#F5A623" />
+        <rect x="90" y="140" width="60" height="60" fill="#F5A623" />
+        <rect x="160" y="110" width="70" height="90" fill="#F5A623" />
+        <rect x="240" y="130" width="50" height="70" fill="#F5A623" />
+        <rect x="300" y="100" width="90" height="100" fill="#F5A623" />
+        <rect x="400" y="125" width="60" height="75" fill="#F5A623" />
+        <rect x="470" y="145" width="40" height="55" fill="#F5A623" />
+        <rect x="680" y="135" width="50" height="65" fill="#F5A623" />
+        <rect x="740" y="115" width="80" height="85" fill="#F5A623" />
+        <rect x="830" y="140" width="60" height="60" fill="#F5A623" />
+        <rect x="900" y="120" width="70" height="80" fill="#F5A623" />
+        <rect x="980" y="130" width="50" height="70" fill="#F5A623" />
+        <rect x="1040" y="105" width="90" height="95" fill="#F5A623" />
+        <rect x="1140" y="140" width="60" height="60" fill="#F5A623" />
+      </svg>
+
+      <div class="hero-badge">Strasbourg · Depuis 2025</div>
+      <h1>Kaffee<br /><span>Schütz</span></h1>
+
+      <div class="bike-wrapper">
+        <div class="bike-svg-wrap"></div>
+        <div class="bike-shadow"></div>
+      </div>
+
+      <p class="hero-sub">
+        Un café d'exception, né en Autriche,<br />qui roule pour vous à
+        Strasbourg.
+      </p>
+      <a href="#contact" class="cta-btn">Être notifié du lancement</a>
+
+      <div class="scroll-hint">
+        <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+          <rect
+            x="1"
+            y="1"
+            width="14"
+            height="22"
+            rx="7"
+            stroke="#F5A623"
+            stroke-width="1"
+          />
+          <circle cx="8" cy="8" r="2" fill="#F5A623">
+            <animateTransform
+              attributeName="transform"
+              type="translate"
+              values="0,0;0,8;0,0"
+              dur="1.8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
+        <span>Découvrir</span>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <div class="divider"></div>
+    <section class="section" id="story">
+      <p class="section-label">Notre histoire</p>
+      <h2>Un amoureux du café<br />qui cherchait le meilleur.</h2>
+      <p>
+        Je m'appelle simplement… un passionné. Strasbourgois convaincu, cycliste
+        dans l'âme, et incapable depuis trop longtemps de trouver un café à la
+        hauteur de mes attentes dans ma ville. Ni trop loin des Alsaciens, ni
+        trop en dessous des standards viennois.
+      </p>
+      <p>
+        Alors j'ai cherché. Et j'ai trouvé Kaffee Schütz — une maison
+        autrichienne fondée à Vienne, déjà implantée en Turquie, qui partage
+        exactement cette obsession : le café parfait, servi avec soin, là où
+        vous êtes.
+      </p>
+      <p>
+        Strasbourg est une ville de cyclistes, de piétons, de gens pressés et de
+        gens qui prennent le temps. Étudiants, cadres, touristes, familles —
+        tout le monde mérite un vrai café. Alors on roule pour vous.
+      </p>
+    </section>
+
+    <!-- ORIGIN BAND -->
+    <div class="origin-band">
+      <p>Une marque née à Vienne · Ancrée à Strasbourg</p>
+
+      <div class="origin-flag">
+        <!-- Drapeau Autriche -->
+        <svg width="28" height="18" viewBox="0 0 28 18">
+          <rect width="28" height="6" fill="#ED2939" />
+          <rect y="6" width="28" height="6" fill="white" />
+          <rect y="12" width="28" height="6" fill="#ED2939" />
+        </svg>
+        Autriche
+      </div>
+
+      <div style="color: #5c3317; font-weight: 500">→</div>
+
+      <div class="origin-flag">
+        <!-- Drapeau France CORRIGÉ -->
+        <svg width="28" height="18" viewBox="0 0 28 18">
+          <rect x="0" width="9.33" height="18" fill="#002654" />
+          <rect x="9.33" width="9.33" height="18" fill="white" />
+          <rect x="18.66" width="9.33" height="18" fill="#ED2939" />
+        </svg>
+        Strasbourg
+      </div>
+    </div>
+
+    <!-- PILLARS -->
+    <section class="pillars" id="concept">
+      <div class="pillars-inner">
+        <p class="section-label">Pourquoi Kaffee Schütz</p>
+        <h2>Fait pour Strasbourg.</h2>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="8"
+                  fill="none"
+                  stroke="#F5A623"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M7 10l2 2 4-4"
+                  stroke="#F5A623"
+                  stroke-width="1.5"
+                  fill="none"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="pillar-title">Qualité viennoise</div>
+            <div class="pillar-desc">
+              Des grains sélectionnés avec rigueur, une extraction maîtrisée par
+              un barista formé. Pas de compromis.
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <circle
+                  cx="10"
+                  cy="6"
+                  r="4"
+                  fill="none"
+                  stroke="#F5A623"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6"
+                  stroke="#F5A623"
+                  stroke-width="1.5"
+                  fill="none"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="pillar-title">Ville de cyclistes</div>
+            <div class="pillar-desc">
+              Strasbourg pédale. Nous aussi. Un vélo cargo au cœur de vos
+              trajets, là où vous passez chaque matin.
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"
+                  fill="none"
+                  stroke="#F5A623"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="pillar-title">Pour tous les profils</div>
+            <div class="pillar-desc">
+              Étudiant, cadre, touriste, retraité — chaque tasse pensée pour
+              vous, pas pour une niche.
+            </div>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M3 10c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7-7-3.1-7-7z"
+                  fill="none"
+                  stroke="#F5A623"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M10 6v4l3 2"
+                  stroke="#F5A623"
+                  stroke-width="1.5"
+                  fill="none"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="pillar-title">Toujours en mouvement</div>
+            <div class="pillar-desc">
+              Place Kléber, quais de l'Ill, campus — on vient à vous, pas
+              l'inverse.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU CARROUSEL -->
+    <section class="menu-section" id="menu">
+      <div class="menu-header">
+        <p class="section-label">La carte</p>
+        <h2
+          style="
+            font-family: &quot;Playfair Display&quot;, serif;
+            font-size: clamp(26px, 5vw, 48px);
+            line-height: 1.2;
+            color: var(--cream);
+          "
+        >
+          Simple. Premium.<br />À emporter.
+        </h2>
+      </div>
+
+      <div class="menu-track-wrap">
+        <div class="menu-track" id="menuTrack">
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Espresso</div>
+            <div class="drink-desc">
+              Court, intense, pur.<br />L'origine de tout.
+            </div>
+            <div class="drink-price">2,50€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Doppio</div>
+            <div class="drink-desc">
+              Double ristretto.<br />Pour les connaisseurs.
+            </div>
+            <div class="drink-price">3,00€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Americano</div>
+            <div class="drink-desc">
+              Long et équilibré.<br />Le classique du matin.
+            </div>
+            <div class="drink-price">3,50€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Cappuccino</div>
+            <div class="drink-desc">
+              Mousse veloutée,<br />équilibre parfait.
+            </div>
+            <div class="drink-price">4,00€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Latte</div>
+            <div class="drink-desc">Doux, crémeux,<br />réconfortant.</div>
+            <div class="drink-price">4,50€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Filtre</div>
+            <div class="drink-desc">Extraction lente.<br />Arômes révélés.</div>
+            <div class="drink-price">4,00€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Cold Brew</div>
+            <div class="drink-desc">
+              Infusion 12h.<br />Frais, sans amertume.
+            </div>
+            <div class="drink-price">5,00€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Chocolat chaud</div>
+            <div class="drink-desc">
+              Velouté, intense.<br />Pour les doux jours.
+            </div>
+            <div class="drink-price">4,50€</div>
+          </div>
+
+          <div class="drink-card">
+            <div class="drink-photo">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle
+                  cx="14"
+                  cy="14"
+                  r="11"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M14 8v6l4 2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Flat White</div>
+            <div class="drink-desc">Micro-mousse fine,<br />espresso fort.</div>
+            <div class="drink-price">4,50€</div>
+          </div>
+
+          <div
+            class="drink-card"
+            style="
+              border-color: rgba(245, 166, 35, 0.5);
+              background: rgba(245, 166, 35, 0.08);
+            "
+          >
+            <div
+              class="drink-photo"
+              style="
+                background: rgba(245, 166, 35, 0.18);
+                border-color: rgba(245, 166, 35, 0.6);
+              "
+            >
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect
+                  x="6"
+                  y="8"
+                  width="16"
+                  height="14"
+                  rx="3"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                />
+                <path
+                  d="M10 8V6a4 4 0 018 0v2"
+                  stroke="#F5A623"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span>Photo</span>
+            </div>
+            <div class="drink-name">Coffret Grains</div>
+            <div class="drink-desc">
+              250g · Origine unique.<br />À emporter chez vous.
+            </div>
+            <div class="drink-price">6,00€</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-arrows">
+        <button class="arrow-btn" id="prevBtn" onclick="scrollMenu(-1)">
+          ←
+        </button>
+        <button class="arrow-btn" id="nextBtn" onclick="scrollMenu(1)">
+          →
+        </button>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="divider"></div>
+    <section class="contact-section" id="contact">
+      <div class="contact-inner">
+        <p class="section-label">Lancement bientôt</p>
+        <h2>Soyez les premiers<br />à le savoir.</h2>
+        <p>
+          On arrive bientôt dans les rues de Strasbourg. Laissez votre email
+          pour être informé du lancement et recevoir une offre de bienvenue.
+        </p>
+        <div class="contact-form" id="contactForm">
+          <input type="text" id="inputName" placeholder="Votre prénom" />
+          <input type="email" id="inputEmail" placeholder="Votre email" />
+          <button type="button" onclick="submitForm()">
+            Je veux être notifié →
+          </button>
+        </div>
+        <div class="success-msg" id="successMsg">
+          ✓ Merci ! Vous serez parmi les premiers informés du lancement à
+          Strasbourg.
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-logo">Kaffee <span>Schütz</span></div>
+      <div class="footer-tagline">Perfekter Kaffeegenuss</div>
+      <div class="footer-copy">
+        Strasbourg · 2025 · Une marque Kaffee Schütz GmbH Austria · Mödling,
+        Autriche
+      </div>
+    </footer>
+
+    <script>
+      function scrollMenu(dir) {
+        var track = document.getElementById("menuTrack");
+        track.scrollBy({ left: dir * 230, behavior: "smooth" });
+      }
+
+      // Keyboard arrow support
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") scrollMenu(-1);
+        if (e.key === "ArrowRight") scrollMenu(1);
+      });
+
+      function submitForm() {
+        var name = document.getElementById("inputName").value.trim();
+        var email = document.getElementById("inputEmail").value.trim();
+        if (!name || !email) {
+          alert("Merci de remplir les deux champs.");
+          return;
+        }
+        document.getElementById("contactForm").style.display = "none";
+        document.getElementById("successMsg").style.display = "block";
+      }
+
+      // Smooth nav hide on scroll
+      var lastY = 0;
+      window.addEventListener("scroll", function () {
+        var nav = document.querySelector("nav");
+        var y = window.scrollY;
+        nav.style.opacity = y > 80 ? "0" : "1";
+        nav.style.pointerEvents = y > 80 ? "none" : "auto";
+        lastY = y;
+      });
+    </script>
+  </body>
+</html>
